@@ -6,10 +6,10 @@ final class Task {
     }
 
     String toLine() {
-        return '|' + title;
+        return '\t' + title;
     }
 
     static Task fromLine(String line) {
-        return new Task(line.substring(line.indexOf('|') + 1));
+        return new Task(line.substring(line.indexOf('\t') + 1));
     }
 }
