@@ -1,14 +1,23 @@
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        List<Task> tasks = new ArrayList<>();
-        try (Scanner in = new Scanner(System.in, "UTF-8")) {
-            run(in, tasks);
+        Path file = Paths.get("tasks.txt");
+        try {
+            List<Task> tasks = TaskFile.load(file);
+            try (Scanner in = new Scanner(System.in, "UTF-8")) {
+                run(in, tasks);
+            }
+            TaskFile.save(file, tasks);
+            System.out.println("Список сохранён.");
+        } catch (IOException e) {
+            System.err.println("Ошибка файла задач: " + e.getMessage());
         }
     }
 
