@@ -16,12 +16,16 @@ public class Main {
         System.out.println("Менеджер задач");
         while (true) {
             System.out.println("\n1. Добавить задачу");
+            System.out.println("2. Показать задачи");
             System.out.println("0. Выход");
             System.out.print("> ");
             if (!in.hasNextLine()) return;
             switch (in.nextLine().trim()) {
                 case "1":
                     addTask(in, tasks);
+                    break;
+                case "2":
+                    showTasks(tasks);
                     break;
                 case "0":
                     return;
@@ -48,6 +52,18 @@ public class Main {
             System.out.println("Задача добавлена.");
         } catch (DateTimeParseException e) {
             System.out.println("Неверная дата. Задача не добавлена.");
+        }
+    }
+
+    private static void showTasks(List<Task> tasks) {
+        if (tasks.isEmpty()) {
+            System.out.println("Список пуст.");
+            return;
+        }
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
+            String date = task.due == null ? "без срока" : task.due.toString();
+            System.out.printf("%d. %s [%s]%n", i + 1, task.title, date);
         }
     }
 }
