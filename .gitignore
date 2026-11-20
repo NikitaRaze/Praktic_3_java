@@ -1,0 +1,6 @@
+/out/
+*.class
+.idea/
+*.iml
+/tasks.txt
+/Otchet_Praktika_3_Variant_4.docx
