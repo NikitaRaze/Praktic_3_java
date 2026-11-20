@@ -87,6 +87,10 @@ public class Main {
         if (!in.hasNextLine()) return;
         try {
             int number = Integer.parseInt(in.nextLine().trim());
+            if (number < 1 || number > tasks.size()) {
+                System.out.println("Задачи с таким номером нет.");
+                return;
+            }
             tasks.remove(number - 1);
             System.out.println("Задача удалена.");
         } catch (NumberFormatException e) {
